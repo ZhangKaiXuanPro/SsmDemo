@@ -5,12 +5,12 @@ public class MyClass {
 
     private String name;
 
+    public MyClass() {
+    }
+
     public MyClass(Integer classid, String name) {
         this.classid = classid;
         this.name = name;
-    }
-
-    public MyClass() {
     }
 
     public Integer getClassid() {

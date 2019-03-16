@@ -9,14 +9,14 @@ public class Teacher {
 
     private Integer age;
 
-    public Teacher() {
-    }
-
     public Teacher(Integer teacherid, String name, String sex, Integer age) {
         this.teacherid = teacherid;
         this.name = name;
         this.sex = sex;
         this.age = age;
+    }
+
+    public Teacher() {
     }
 
     public Integer getTeacherid() {

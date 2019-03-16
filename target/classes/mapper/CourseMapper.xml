@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="school.demo.dao.MyScoreMapper">
-  <resultMap id="BaseResultMap" type="school.demo.entity.MyScore">
+<mapper namespace="school.demo.dao.CourseMapper">
+  <resultMap id="BaseResultMap" type="school.demo.entity.Course">
     <id column="courseId" jdbcType="INTEGER" property="courseid" />
-    <id column="studentId" jdbcType="INTEGER" property="studentid" />
-    <id column="score" jdbcType="INTEGER" property="score" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="teacher" jdbcType="VARCHAR" property="teacher" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -65,15 +65,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    courseId, studentId, score
+    courseId, name, teacher
   </sql>
-  <select id="selectByExample" parameterType="school.demo.entity.MyScoreExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="school.demo.entity.CourseExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from myscore
+    from course
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -81,66 +81,70 @@
       order by ${orderByClause}
     </if>
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="map">
-    delete from myscore
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from course
     where courseId = #{courseid,jdbcType=INTEGER}
-      and studentId = #{studentid,jdbcType=INTEGER}
-      and score = #{score,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from course
+    where courseId = #{courseid,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="school.demo.entity.MyScoreExample">
-    delete from myscore
+  <delete id="deleteByExample" parameterType="school.demo.entity.CourseExample">
+    delete from course
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="school.demo.entity.MyScore">
-    insert into myscore (courseId, studentId, score
+  <insert id="insert" parameterType="school.demo.entity.Course">
+    insert into course (courseId, name, teacher
       )
-    values (#{courseid,jdbcType=INTEGER}, #{studentid,jdbcType=INTEGER}, #{score,jdbcType=INTEGER}
+    values (#{courseid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{teacher,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="school.demo.entity.MyScore">
-    insert into myscore
+  <insert id="insertSelective" parameterType="school.demo.entity.Course">
+    insert into course
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="courseid != null">
         courseId,
       </if>
-      <if test="studentid != null">
-        studentId,
+      <if test="name != null">
+        name,
       </if>
-      <if test="score != null">
-        score,
+      <if test="teacher != null">
+        teacher,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="courseid != null">
         #{courseid,jdbcType=INTEGER},
       </if>
-      <if test="studentid != null">
-        #{studentid,jdbcType=INTEGER},
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
       </if>
-      <if test="score != null">
-        #{score,jdbcType=INTEGER},
+      <if test="teacher != null">
+        #{teacher,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="school.demo.entity.MyScoreExample" resultType="java.lang.Long">
-    select count(*) from myscore
+  <select id="countByExample" parameterType="school.demo.entity.CourseExample" resultType="java.lang.Long">
+    select count(*) from course
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update myscore
+    update course
     <set>
       <if test="record.courseid != null">
         courseId = #{record.courseid,jdbcType=INTEGER},
       </if>
-      <if test="record.studentid != null">
-        studentId = #{record.studentid,jdbcType=INTEGER},
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
       </if>
-      <if test="record.score != null">
-        score = #{record.score,jdbcType=INTEGER},
+      <if test="record.teacher != null">
+        teacher = #{record.teacher,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -148,12 +152,30 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update myscore
+    update course
     set courseId = #{record.courseid,jdbcType=INTEGER},
-      studentId = #{record.studentid,jdbcType=INTEGER},
-      score = #{record.score,jdbcType=INTEGER}
+      name = #{record.name,jdbcType=VARCHAR},
+      teacher = #{record.teacher,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="school.demo.entity.Course">
+    update course
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="teacher != null">
+        teacher = #{teacher,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where courseId = #{courseid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="school.demo.entity.Course">
+    update course
+    set name = #{name,jdbcType=VARCHAR},
+      teacher = #{teacher,jdbcType=VARCHAR}
+    where courseId = #{courseid,jdbcType=INTEGER}
   </update>
 </mapper>

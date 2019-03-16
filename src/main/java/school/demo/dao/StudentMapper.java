@@ -1,7 +1,10 @@
 package school.demo.dao;
 
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import school.demo.entity.Student;
+import school.demo.entity.StudentExample;
+
+import java.util.List;
 
 public interface StudentMapper {
     long countByExample(StudentExample example);

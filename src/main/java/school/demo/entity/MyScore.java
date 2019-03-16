@@ -7,7 +7,8 @@ public class MyScore {
 
     private Integer score;
 
-
+    public MyScore() {
+    }
 
     public MyScore(Integer courseid, Integer studentid, Integer score) {
         this.courseid = courseid;
@@ -15,11 +16,10 @@ public class MyScore {
         this.score = score;
     }
 
-    public MyScore() {
-    }
     public Integer getCourseid() {
         return courseid;
     }
+
     public void setCourseid(Integer courseid) {
         this.courseid = courseid;
     }

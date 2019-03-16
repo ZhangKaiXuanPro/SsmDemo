@@ -1,22 +1,25 @@
 package school.demo.dao;
 
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import school.demo.entity.MyScore;
+import school.demo.entity.MyScoreExample;
+
+import java.util.List;
 
 public interface MyScoreMapper {
     long countByExample(MyScoreExample example);
 
     int deleteByExample(MyScoreExample example);
 
-    int deleteByPrimaryKey(MyScoreKey key);
+    int deleteByPrimaryKey(@Param("courseid") Integer courseid, @Param("studentid") Integer studentid, @Param("score") Integer score);
 
-    int insert(MyScoreKey record);
+    int insert(MyScore record);
 
-    int insertSelective(MyScoreKey record);
+    int insertSelective(MyScore record);
 
-    List<MyScoreKey> selectByExample(MyScoreExample example);
+    List<MyScore> selectByExample(MyScoreExample example);
 
-    int updateByExampleSelective(@Param("record") MyScoreKey record, @Param("example") MyScoreExample example);
+    int updateByExampleSelective(@Param("record") MyScore record, @Param("example") MyScoreExample example);
 
-    int updateByExample(@Param("record") MyScoreKey record, @Param("example") MyScoreExample example);
+    int updateByExample(@Param("record") MyScore record, @Param("example") MyScoreExample example);
 }
