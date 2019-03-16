@@ -16,6 +16,10 @@ public class Student {
     public Student() {
     }
 
+    public Student(String name) {
+        this.name = name;
+    }
+
     public Student(Integer studentid, String name) {
         this.studentid = studentid;
         this.name = name;

@@ -33,8 +33,10 @@ public class MapperTest {
 //        TeacherMapper bean= ioc.getBean(TeacherMapper.class);
 
 //        teacherMapper.insertSelective(new Teacher(1,"Li Ming","male",12));
-//        studentMapper.insertSelective(new Student());
-        myClassMapper.insertSelective(new MyClass(2,"yi ban"));
+        for(int i=0; i<100;i++){
+            studentMapper.insertSelective(new Student("Limning"+i));
+        }
+//        myClassMapper.insertSelective(new MyClass(2,"yi ban"));
 //        courseMapper.insertSelective(new Course(2,"Zhang S","wuweu"));
 //        myScoreMapper.insertSelective(new MyScore(12,2,12));
 //        teacherMapper.insertSelective(new Teacher(2,"Zhang S","female",23));
