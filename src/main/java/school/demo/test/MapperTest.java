@@ -9,6 +9,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import school.demo.dao.*;
 import school.demo.entity.*;
 
+import java.util.List;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:spring-mybatis.xml"})
 public class MapperTest {
@@ -33,8 +35,10 @@ public class MapperTest {
 //        TeacherMapper bean= ioc.getBean(TeacherMapper.class);
 
 //        teacherMapper.insertSelective(new Teacher(1,"Li Ming","male",12));
-        for(int i=0; i<100;i++){
-            studentMapper.insertSelective(new Student("Limning"+i));
+
+        List<Student> students = studentMapper.selectByExample(null);
+        for(Student s:students){
+            System.out.println(s);
         }
 //        myClassMapper.insertSelective(new MyClass(2,"yi ban"));
 //        courseMapper.insertSelective(new Course(2,"Zhang S","wuweu"));

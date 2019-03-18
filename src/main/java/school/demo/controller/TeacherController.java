@@ -16,7 +16,7 @@ import java.util.List;
 public class TeacherController {
 
     @Autowired
-    TeacherService teacherService;
+    private TeacherService teacherService;
 
     /**
      * 查询学生
@@ -32,4 +32,5 @@ public class TeacherController {
 
         return "stuList";
     }
+
 }
